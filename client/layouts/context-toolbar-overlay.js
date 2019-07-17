@@ -57,3 +57,5 @@ export class ContextToolbarOverlay extends connect(store)(LitElement) {
     })
   }
 }
+
+customElements.define('context-toolbar-overlay', ContextToolbarOverlay)

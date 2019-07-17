@@ -14,7 +14,6 @@ export default function bootstrap() {
   store.dispatch({
     type: APPEND_FOOTERBAR,
     footerbar: {
-      position: TOOL_POSITION.REAR_END,
       template: html`
         <context-toolbar></context-toolbar>
       `
@@ -24,7 +23,6 @@ export default function bootstrap() {
   store.dispatch({
     type: APPEND_FOOTERBAR,
     footerbar: {
-      position: TOOL_POSITION.REAR_END,
       template: html`
         <context-toolbar-overlay></context-toolbar-overlay>
       `

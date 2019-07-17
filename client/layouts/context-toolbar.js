@@ -146,7 +146,7 @@ class ContextToolbar extends connect(store)(LitElement) {
   }
 
   stateChanged(state) {
-    this._contextTools = state.layout.contextTools
+    this._contextTools = state.context.contextTools
     this._context = state.route.context
   }
 }

@@ -10,7 +10,7 @@ class ContextToolbar extends connect(store)(LitElement) {
   static get properties() {
     return {
       _context: Object,
-      _contextTools: Array
+      _tools: Array
     }
   }
 
@@ -88,15 +88,15 @@ class ContextToolbar extends connect(store)(LitElement) {
 
   render() {
     let contextKeys = Object.keys(this._context)
-    let contextTools = (this._contextTools || []).filter(tool => {
+    let tools = (this._tools || []).filter(tool => {
       if (!tool.context || contextKeys.includes(tool.context)) return tool
     })
 
-    let frontEndTools = contextTools.filter(tool => tool.position == TOOL_POSITION.FRONT_END)
-    let frontTools = contextTools.filter(tool => tool.position == TOOL_POSITION.FRONT)
-    let centerTools = contextTools.filter(tool => tool.position == TOOL_POSITION.CENTER)
-    let rearTools = contextTools.filter(tool => tool.position == TOOL_POSITION.REAR)
-    let rearEndTools = contextTools.filter(tool => tool.position == TOOL_POSITION.REAR_END)
+    let frontEndTools = tools.filter(tool => tool.position == TOOL_POSITION.FRONT_END)
+    let frontTools = tools.filter(tool => tool.position == TOOL_POSITION.FRONT)
+    let centerTools = tools.filter(tool => tool.position == TOOL_POSITION.CENTER)
+    let rearTools = tools.filter(tool => tool.position == TOOL_POSITION.REAR)
+    let rearEndTools = tools.filter(tool => tool.position == TOOL_POSITION.REAR_END)
 
     return html`
       <div id="float"></div>
@@ -146,7 +146,7 @@ class ContextToolbar extends connect(store)(LitElement) {
   }
 
   stateChanged(state) {
-    this._contextTools = state.context.contextTools
+    this._tools = state.context.tools
     this._context = state.route.context
   }
 }

@@ -20,17 +20,6 @@ export default function bootstrap() {
     }
   })
 
-  const openContextToolbarOverlay = () => {
-    var state = store.getState()
-    if (state.more.show) {
-      return
-    }
-
-    store.dispatch({
-      type: 'SHOW_CONTEXT_OVERLAY'
-    })
-  }
-
   store.dispatch({
     type: REGISTER_OVERLAY,
     name: 'context-toolbar-overlay',

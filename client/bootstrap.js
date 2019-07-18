@@ -1,10 +1,24 @@
 import { html } from 'lit-html'
+
 import { store } from '@things-factory/shell'
-import { APPEND_FOOTERBAR, REGISTER_OVERLAY } from '@things-factory/layout-base'
+import { APPEND_FOOTERBAR, REGISTER_OVERLAY, TOOL_POSITION } from '@things-factory/layout-base'
+import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
 
 export default function bootstrap() {
   import('./layouts/context-toolbar')
   import('./layouts/context-toolbar-overlay')
+  import('./tools/title-bar')
+
+  /* add title app-tool */
+  store.dispatch({
+    type: APPEND_APP_TOOL,
+    tool: {
+      template: html`
+        <title-bar></title-bar>
+      `,
+      position: TOOL_POSITION.CENTER
+    }
+  })
 
   /*
    * footerbar 에 append 하는 순서가 중요하다.

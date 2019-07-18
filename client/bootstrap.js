@@ -1,6 +1,6 @@
 import { html } from 'lit-html'
 import { store } from '@things-factory/shell'
-import { APPEND_FOOTERBAR, TOOL_POSITION } from '@things-factory/layout-base'
+import { APPEND_FOOTERBAR, REGISTER_OVERLAY } from '@things-factory/layout-base'
 
 export default function bootstrap() {
   import('./layouts/context-toolbar')
@@ -20,9 +20,30 @@ export default function bootstrap() {
     }
   })
 
+  const openContextToolbarOverlay = () => {
+    var state = store.getState()
+    if (state.more.show) {
+      return
+    }
+
+    store.dispatch({
+      type: 'SHOW_CONTEXT_OVERLAY'
+    })
+  }
+
+  store.dispatch({
+    type: REGISTER_OVERLAY,
+    name: 'context-toolbar-overlay',
+    overlay: {
+      show: false
+    }
+  })
+
   store.dispatch({
     type: APPEND_FOOTERBAR,
     footerbar: {
+      hovering: 'next',
+      // backdrop: true,
       template: html`
         <context-toolbar-overlay></context-toolbar-overlay>
       `

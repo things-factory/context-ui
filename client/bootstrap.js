@@ -5,9 +5,8 @@ import { APPEND_FOOTERBAR, TOOL_POSITION } from '@things-factory/layout-base'
 import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
 
 export default function bootstrap() {
-  import('./layouts/context-toolbar')
-  import('./layouts/context-toolbar-overlay')
   import('./tools/title-bar')
+  import('./layouts/context-toolbar')
 
   /* add title app-tool */
   store.dispatch({
@@ -43,9 +42,7 @@ export default function bootstrap() {
       show: false,
       hovering: 'next',
       backdrop: true,
-      template: html`
-        <context-toolbar-overlay></context-toolbar-overlay>
-      `
+      template: html``
     }
   })
 }

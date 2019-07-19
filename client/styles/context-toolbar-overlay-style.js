@@ -1,4 +1,4 @@
-import { css } from 'lit-html'
+import { css } from 'lit-element'
 
 export const ContextToolbarOverlayStyle = css`
   :host {

@@ -1,7 +1,7 @@
 import { html } from 'lit-html'
 
 import { store } from '@things-factory/shell'
-import { APPEND_FOOTERBAR, REGISTER_OVERLAY, TOOL_POSITION } from '@things-factory/layout-base'
+import { APPEND_FOOTERBAR, TOOL_POSITION } from '@things-factory/layout-base'
 import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
 
 export default function bootstrap() {
@@ -27,7 +27,9 @@ export default function bootstrap() {
    */
   store.dispatch({
     type: APPEND_FOOTERBAR,
+    name: 'context-toolbar',
     footerbar: {
+      show: true,
       template: html`
         <context-toolbar></context-toolbar>
       `
@@ -35,18 +37,12 @@ export default function bootstrap() {
   })
 
   store.dispatch({
-    type: REGISTER_OVERLAY,
-    name: 'context-toolbar-overlay',
-    overlay: {
-      show: false
-    }
-  })
-
-  store.dispatch({
     type: APPEND_FOOTERBAR,
+    name: 'context-toolbar-overlay',
     footerbar: {
+      show: false,
       hovering: 'next',
-      // backdrop: true,
+      backdrop: true,
       template: html`
         <context-toolbar-overlay></context-toolbar-overlay>
       `

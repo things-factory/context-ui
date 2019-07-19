@@ -6,7 +6,6 @@ import { store } from '@things-factory/shell'
 export class ContextToolbarOverlay extends connect(store)(LitElement) {
   static get properties() {
     return {
-      show: Boolean,
       template: Object
     }
   }
@@ -21,19 +20,16 @@ export class ContextToolbarOverlay extends connect(store)(LitElement) {
   }
 
   render() {
-    this.style.display = this.show ? 'block' : 'none'
-
     return html`
       ${this.template}
     `
   }
 
   stateChanged(state) {
-    var overlay = state.layout.overlays['context-toolbar-overlay']
+    var viewpart = state.layout.viewparts['context-toolbar-viewpart']
 
-    this.show = overlay && overlay.show
-    if (overlay && overlay.template) {
-      this.template = overlay.template
+    if (viewpart && viewpart.template) {
+      this.template = viewpart.template
     }
   }
 }

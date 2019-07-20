@@ -1,7 +1,7 @@
 import { html } from 'lit-html'
 
 import { store } from '@things-factory/shell'
-import { APPEND_FOOTERBAR, TOOL_POSITION } from '@things-factory/layout-base'
+import { appendViewpart, VIEWPART_POSITION, TOOL_POSITION } from '@things-factory/layout-base'
 import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
 
 export default function bootstrap() {
@@ -24,25 +24,25 @@ export default function bootstrap() {
    * footerbar는 아래에서 위로 올라가는 stack 형태의 순서이므로,
    * context-toolbar가 먼저, 그리고 context-toolbar-overlay 가 나중에 올라간다.
    */
-  store.dispatch({
-    type: APPEND_FOOTERBAR,
+  appendViewpart({
     name: 'context-toolbar',
-    footerbar: {
+    viewpart: {
       show: true,
       template: html`
         <context-toolbar></context-toolbar>
       `
-    }
+    },
+    position: VIEWPART_POSITION.FOOTERBAR
   })
 
-  store.dispatch({
-    type: APPEND_FOOTERBAR,
+  appendViewpart({
     name: 'context-toolbar-overlay',
-    footerbar: {
+    viewpart: {
       show: false,
       hovering: 'next',
       backdrop: true,
       template: html``
-    }
+    },
+    position: VIEWPART_POSITION.FOOTERBAR
   })
 }

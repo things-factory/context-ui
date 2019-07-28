@@ -48,7 +48,7 @@ export const ContextToolbarOverlayStyle = css`
     border-bottom: var(--context-ui-list-border-hover-bottom);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 460px) {
     :host {
       min-width: 100%;
       box-shadow: none;

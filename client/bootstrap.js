@@ -4,10 +4,10 @@ import { store } from '@things-factory/shell'
 import { appendViewpart, VIEWPART_POSITION, TOOL_POSITION } from '@things-factory/layout-base'
 import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
 
-export default function bootstrap() {
-  import('./tools/title-bar')
-  import('./layouts/context-toolbar')
+import './tools/title-bar'
+import './layouts/context-toolbar'
 
+export default function bootstrap() {
   /* add title app-tool */
   store.dispatch({
     type: APPEND_APP_TOOL,

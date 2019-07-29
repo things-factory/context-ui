@@ -21,9 +21,9 @@ class ContextToolbar extends connect(store)(LitElement) {
           display: flex;
           position: relative;
 
+          height: var(--context-toolbar-height);
           background-color: var(--context-toolbar-background-color);
           justify-content: space-between;
-          padding: 0;
         }
 
         [center] {
@@ -38,7 +38,7 @@ class ContextToolbar extends connect(store)(LitElement) {
         }
 
         :host(*) {
-          align-items: center;
+          align-items: start;
           padding: 0px;
         }
 

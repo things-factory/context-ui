@@ -22,65 +22,50 @@ class ContextToolbar extends connect(store)(LitElement) {
           position: relative;
 
           height: var(--context-toolbar-height);
+          padding: var(--context-toolbar-padding);
           background-color: var(--context-toolbar-background-color);
           justify-content: space-between;
         }
-
-        [center] {
+        #front {
+          background-color: var(--secondary-color);
+          border-radius: var(--context-toolbar-function-border-radius);
+          height: var(--context-toolbar-function-button-height);
+        }
+        #front > *:hover,
+        #front > *:active {
+          background-color: var(--primary-color);
+          cursor: pointer;
+        }
+        #front > * {
+          height: 100%;
+          color: var(--context-toolbar-function-button-color);
+          line-height: var(--context-toolbar-function-button-lineheight);
+          padding: var(--context-toolbar-function-button-padding);
+        }
+        #center {
           flex: 1;
           justify-content: center;
           align-items: center;
         }
 
-        [center] > * {
+        #center > * {
           justify-content: center;
           align-items: center;
         }
-
-        :host(*) {
+        #rear-end {
           align-items: start;
-          padding: 0px;
         }
 
-        ::slotted(*) {
+        div > * {
           align-items: center;
         }
 
-        :host(.vline),
-        ::slotted(.vline) {
-          display: block;
-          flex: none;
-          border-left: 1px solid rgba(255, 255, 255, 0.07);
-          border-right: 1px solid rgba(0, 0, 0, 0.1);
-          width: 0px;
-          height: 18px;
-          margin: 0 4px;
-        }
-
-        :host(label),
-        ::slotted(label) {
-          margin-right: 5px;
-          color: #fff;
-          font-size: 20px;
-        }
-
-        slot {
+        div {
           display: flex;
           flex-wrap: nowrap;
-          height: 100%;
           align-items: center;
           overflow: hidden;
           padding: 0;
-        }
-
-        span.space {
-          width: 10px;
-        }
-
-        #float {
-          position: absolute;
-
-          width: 100%;
         }
       `
     ]
@@ -99,26 +84,25 @@ class ContextToolbar extends connect(store)(LitElement) {
     let rearEndTools = tools.filter(tool => tool.position == TOOL_POSITION.REAR_END)
 
     return html`
-      <div id="float"></div>
+      <div id="front-end">
+        ${frontEndTools.map(
+          tool =>
+            html`
+              ${tool.template}
+            `
+        )}
+      </div>
 
-      <slot name="front-end"> </slot>
-      ${frontEndTools.map(
-        tool =>
-          html`
-            ${tool.template}
-          `
-      )}
+      <div id="front">
+        ${frontTools.map(
+          tool =>
+            html`
+              ${tool.template}
+            `
+        )}
+      </div>
 
-      <slot name="front"> </slot>
-      ${frontTools.map(
-        tool =>
-          html`
-            ${tool.template}
-          `
-      )}
-
-      <div center>
-        <slot name="center"> </slot>
+      <div id="center">
         ${centerTools.map(
           tool =>
             html`
@@ -127,21 +111,23 @@ class ContextToolbar extends connect(store)(LitElement) {
         )}
       </div>
 
-      <slot name="rear"> </slot>
-      ${rearTools.map(
-        tool =>
-          html`
-            ${tool.template}
-          `
-      )}
+      <div id="rear">
+        ${rearTools.map(
+          tool =>
+            html`
+              ${tool.template}
+            `
+        )}
+      </div>
 
-      <slot name="rear-end"> </slot>
-      ${rearEndTools.map(
-        tool =>
-          html`
-            ${tool.template}
-          `
-      )}
+      <div id="rear-end">
+        ${rearEndTools.map(
+          tool =>
+            html`
+              ${tool.template}
+            `
+        )}
+      </div>
     `
   }
 

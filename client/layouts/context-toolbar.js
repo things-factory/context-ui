@@ -26,16 +26,21 @@ class ContextToolbar extends connect(store)(LitElement) {
           background-color: var(--context-toolbar-background-color);
           justify-content: space-between;
         }
-        #front {
+        #front,
+        #front-end {
           background-color: var(--secondary-color);
           border-radius: var(--context-toolbar-function-border-radius);
           height: var(--context-toolbar-function-button-height);
         }
+
+        #front-end > *:hover,
+        #front-end > *:active,
         #front > *:hover,
         #front > *:active {
           background-color: var(--primary-color);
           cursor: pointer;
         }
+        #front-end > *,
         #front > * {
           height: 100%;
           color: var(--context-toolbar-function-button-color);

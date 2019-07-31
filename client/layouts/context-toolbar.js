@@ -21,32 +21,48 @@ class ContextToolbar extends connect(store)(LitElement) {
           display: flex;
           position: relative;
 
-          height: var(--context-toolbar-height);
-          padding: var(--context-toolbar-padding);
           background-color: var(--context-toolbar-background-color);
           justify-content: space-between;
+          box-shadow: var(--context-toolbar-shadow-line);
         }
-        #front,
         #front-end {
-          background-color: var(--secondary-color);
-          border-radius: var(--context-toolbar-function-border-radius);
+          padding-left: var(--context-toolbar-side-padding);
+        }
+        #rear-end {
+          padding-right: var(--context-toolbar-side-padding);
+        }
+        #front-end mwc-icon,
+        #front mwc-icon {
+          background-color: var(--context-toolbar-function-button-background-color);
+          border: var(--context-toolbar-function-button-border);
           height: var(--context-toolbar-function-button-height);
-        }
-
-        #front-end > *:hover,
-        #front-end > *:active,
-        #front > *:hover,
-        #front > *:active {
-          background-color: var(--primary-color);
-          cursor: pointer;
-        }
-        #front-end > *,
-        #front > * {
-          height: 100%;
+          margin: var(--context-toolbar-button-margin);
+          padding: var(--context-toolbar-function-button-padding);
           color: var(--context-toolbar-function-button-color);
           line-height: var(--context-toolbar-function-button-lineheight);
-          padding: var(--context-toolbar-function-button-padding);
+          cursor: pointer;
         }
+        #front-end mwc-icon:first-child,
+        #front mwc-icon:first-child {
+          border-top-left-radius: var(--context-toolbar-function-button-radius);
+          border-bottom-left-radius: var(--context-toolbar-function-button-radius);
+        }
+        #front-end mwc-icon:last-child,
+        #front mwc-icon:last-child {
+          border-top-right-radius: var(--context-toolbar-function-button-radius);
+          border-bottom-right-radius: var(--context-toolbar-function-button-radius);
+        }
+
+        #front-end mwc-icon {
+          background-color: var(--primary-color);
+        }
+        #front-end mwc-icon:hover {
+          background-color: var(--context-toolbar-function-button-background-color);
+        }
+        #front mwc-icon:hover {
+          background-color: var(--context-toolbar-function-button-hover-background-color);
+        }
+
         #center {
           flex: 1;
           justify-content: center;
@@ -56,6 +72,10 @@ class ContextToolbar extends connect(store)(LitElement) {
         #center > * {
           justify-content: center;
           align-items: center;
+        }
+        #rear-end > *,
+        #rear > * {
+          margin: var(--context-toolbar-button-margin);
         }
         #rear-end {
           align-items: start;

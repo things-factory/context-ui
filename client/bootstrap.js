@@ -3,8 +3,10 @@ import { html } from 'lit-html'
 import { store } from '@things-factory/shell'
 import { appendViewpart, VIEWPART_POSITION, TOOL_POSITION } from '@things-factory/layout-base'
 import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
+import { APPEND_CONTEXT_TOOL } from '@things-factory/context-base'
 
 import './tools/title-bar'
+import './tools/page-action-context-bar'
 import './layouts/context-toolbar'
 
 export default function bootstrap() {
@@ -44,5 +46,16 @@ export default function bootstrap() {
       template: html``
     },
     position: VIEWPART_POSITION.FOOTERBAR
+  })
+
+  store.dispatch({
+    type: APPEND_CONTEXT_TOOL,
+    tool: {
+      template: html`
+        <page-action-context-bar></page-action-context-bar>
+      `,
+      position: TOOL_POSITION.REAR_END,
+      context: 'actions'
+    }
   })
 }

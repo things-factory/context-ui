@@ -59,7 +59,25 @@ class PageActionContextBar extends connect(store)(LitElement) {
                 </select>
               `
             : html`
-                <button @click="${action.action}"><mwc-icon>done_all</mwc-icon> ${action.title}</button>
+                <button
+                  @click="${e => {
+                    if (action.type === 'transaction') {
+                      const button = e.currentTarget
+                      const icon = button.querySelector('mwc-icon')
+                      icon.innerText = 'block'
+                      button.disabled = true
+
+                      action.action(() => {
+                        button.disabled = false
+                        icon.innerText = 'done_all'
+                      })
+                    } else {
+                      action.action()
+                    }
+                  }}"
+                >
+                  <mwc-icon>done_all</mwc-icon> ${action.title}
+                </button>
               `}
         `
       )}

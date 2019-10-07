@@ -37,8 +37,18 @@ class PageActionContextBar extends connect(store)(LitElement) {
         button mwc-icon {
           vertical-align: middle;
           margin-bottom: var(--context-toolbar-iconbutton-margin);
-          display: var(--context-toolbar-iconbutton-display);
           font-size: var(--context-toolbar-iconbutton-size);
+        }
+        button mwc-icon[working] {
+          animation: rotate 1.5s linear infinite;
+        }
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
       `
     ]
@@ -64,7 +74,8 @@ class PageActionContextBar extends connect(store)(LitElement) {
                     /* all actions should be bloked for a second */
                     const button = e.currentTarget
                     const icon = button.querySelector('mwc-icon')
-                    icon.innerText = 'block'
+                    icon.innerText = 'rotate_right'
+                    icon.setAttribute('working', true)
                     button.disabled = true
 
                     try {
@@ -73,6 +84,7 @@ class PageActionContextBar extends connect(store)(LitElement) {
                       await sleep(1000)
                       button.disabled = false
                       icon.innerText = 'done_all'
+                      icon.removeAttribute('working')
                     }
                   }}
                 >

@@ -23,6 +23,7 @@ class PageActionContextBar extends connect(store)(LitElement) {
           text-transform: capitalize;
           cursor: pointer;
           padding: var(--context-toolbar-button-padding);
+          max-width: var(--context-toolbar-button-max-width);
           height: var(--context-toolbar-button-height);
           border: var(--context-toolbar-border);
           border-radius: var(--border-radius);

@@ -3,6 +3,7 @@ body {
   --context-toolbar-button-background-color: #fff;
   --context-toolbar-border: 1px solid rgba(57, 78, 100, 0.5);
   --context-toolbar-border-hover: 1px solid var(--primary-color);
+  --context-toolbar-button-max-width: auto;
   --context-toolbar-button-height: 36px;
   --context-toolbar-button-margin: 5px 0;
   --context-toolbar-button-padding: 0 9px;
@@ -54,6 +55,7 @@ body {
 @media only screen and (max-width: 460px) {
   body {
     --context-toolbar-button: normal 9px var(--theme-font);
+    --context-toolbar-button-max-width: 50px;
     --context-toolbar-button-height: 50px;
     --context-toolbar-iconbutton-size: 30px;
     --context-toolbar-border: none;
@@ -67,5 +69,10 @@ body {
     --context-toolbar-function-button-radius: 0;
     --context-toolbar-side-padding: 0;
     --context-toolbar-shadow-line: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+@media (min-width: 461px) and (max-width: 1024px) {
+  body {
+    --context-toolbar-button-max-width: 50px;
   }
 }

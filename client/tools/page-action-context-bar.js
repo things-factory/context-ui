@@ -3,7 +3,7 @@ import { connect } from 'pwa-helpers/connect-mixin'
 
 import '@material/mwc-button'
 
-import { store } from '@things-factory/shell'
+import { store, sleep } from '@things-factory/shell'
 
 class PageActionContextBar extends connect(store)(LitElement) {
   static get properties() {
@@ -50,7 +50,7 @@ class PageActionContextBar extends connect(store)(LitElement) {
         action => html`
           ${action.select && action.select.length > 0
             ? html`
-                <select @change="${action.action}">
+                <select @change=${action.action}>
                   ${action.select.map(
                     option => html`
                       <option>${option}</option>
@@ -60,21 +60,21 @@ class PageActionContextBar extends connect(store)(LitElement) {
               `
             : html`
                 <button
-                  @click="${e => {
-                    if (action.type === 'transaction') {
-                      const button = e.currentTarget
-                      const icon = button.querySelector('mwc-icon')
-                      icon.innerText = 'block'
-                      button.disabled = true
+                  @click=${async e => {
+                    /* all actions should be bloked for a second */
+                    const button = e.currentTarget
+                    const icon = button.querySelector('mwc-icon')
+                    icon.innerText = 'block'
+                    button.disabled = true
 
-                      action.action(() => {
-                        button.disabled = false
-                        icon.innerText = 'done_all'
-                      })
-                    } else {
-                      action.action()
+                    try {
+                      await action.action()
+                    } finally {
+                      await sleep(1000)
+                      button.disabled = false
+                      icon.innerText = 'done_all'
                     }
-                  }}"
+                  }}
                 >
                   <mwc-icon>done_all</mwc-icon> ${action.title}
                 </button>

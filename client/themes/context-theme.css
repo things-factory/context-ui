@@ -71,8 +71,3 @@ body {
     --context-toolbar-shadow-line: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
   }
 }
-@media (min-width: 461px) and (max-width: 1024px) {
-  body {
-    --context-toolbar-button-max-width: 50px;
-  }
-}

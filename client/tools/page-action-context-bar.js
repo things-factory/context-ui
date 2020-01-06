@@ -57,43 +57,50 @@ class PageActionContextBar extends connect(store)(LitElement) {
 
   render() {
     return html`
-      ${this._actions.map(
-        action => html`
-          ${action.select && action.select.length > 0
-            ? html`
-                <select @change=${action.action}>
-                  ${action.select.map(
-                    option => html`
-                      <option>${option}</option>
-                    `
-                  )}
-                </select>
-              `
-            : html`
-                <button
-                  @click=${async e => {
-                    /* all actions should be bloked for a second */
-                    const button = e.currentTarget
-                    const icon = button.querySelector('mwc-icon')
-                    icon.innerText = 'rotate_right'
-                    icon.setAttribute('working', true)
-                    button.disabled = true
+      ${this._actions.map($action => {
+        let { type, title, icon, action, select, href } = $action
+        return type == 'text'
+          ? html`
+              <span>${title}</span>
+            `
+          : type == 'select' || (select && select.length > 0)
+          ? html`
+              <select @change=${action}>
+                ${select.map(
+                  option => html`
+                    <option>${option}</option>
+                  `
+                )}
+              </select>
+            `
+          : type == 'link'
+          ? html`
+              <a href=${href}>${title}</a>
+            `
+          : html`
+              <button
+                @click=${async e => {
+                  /* all actions should be bloked for a second */
+                  const button = e.currentTarget
+                  const buttonIcon = button.querySelector('mwc-icon')
+                  buttonIcon.innerText = 'rotate_right'
+                  buttonIcon.setAttribute('working', true)
+                  button.disabled = true
 
-                    try {
-                      await action.action()
-                    } finally {
-                      await sleep(1000)
-                      button.disabled = false
-                      icon.innerText = 'done_all'
-                      icon.removeAttribute('working')
-                    }
-                  }}
-                >
-                  <mwc-icon>done_all</mwc-icon> ${action.title}
-                </button>
-              `}
-        `
-      )}
+                  try {
+                    await action()
+                  } finally {
+                    await sleep(1000)
+                    button.disabled = false
+                    buttonIcon.innerText = icon || 'done_all'
+                    buttonIcon.removeAttribute('working')
+                  }
+                }}
+              >
+                <mwc-icon>${icon || 'done_all'}</mwc-icon> ${title}
+              </button>
+            `
+      })}
     `
   }
 

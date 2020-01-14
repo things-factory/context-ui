@@ -55,7 +55,7 @@ body {
 @media only screen and (max-width: 460px) {
   body {
     --context-toolbar-button: normal 9px var(--theme-font);
-    --context-toolbar-button-max-width: 50px;
+    --context-toolbar-button-max-width: 60px;
     --context-toolbar-button-height: 50px;
     --context-toolbar-iconbutton-size: 30px;
     --context-toolbar-border: none;
@@ -69,5 +69,6 @@ body {
     --context-toolbar-function-button-radius: 0;
     --context-toolbar-side-padding: 0;
     --context-toolbar-shadow-line: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+    --context-toolbar-button-padding: 0 10px 0 0;
   }
 }

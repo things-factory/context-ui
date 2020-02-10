@@ -3,7 +3,8 @@ import { connect } from 'pwa-helpers/connect-mixin'
 
 import '@material/mwc-button'
 
-import { store, sleep } from '@things-factory/shell'
+import { store } from '@things-factory/shell'
+import { sleep } from '@things-factory/utils'
 
 class PageActionContextBar extends connect(store)(LitElement) {
   static get properties() {
